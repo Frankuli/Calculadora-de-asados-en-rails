@@ -1,14 +1,27 @@
 
-<%= link_to 'Nuevo Evento', new_event_path %>
+<%= link_to 'Nuevo Evento', new_event_path, {:class=>"genric-btn primary circle arrow" } %>
 <h3 class="mb-30">Listados de Eventos</h3>
-<% @events.each do |event|%>
-    <div class="">Nombre:  <%= event.name %></div>
-    <div class="">Fecha: <%= event.date %></div>
-    <div class="visit"><%= link_to 'Ver', event_path(event) %>  </div>
-    <div class="visit"> <%= link_to 'Editar', edit_event_path(event) %></div>
-    <div class="visit"> <%= link_to 'Borrar', event_path(event), method: :delete, data:{confirm: 'SegurE?'} %> </div>
-    <hr>
-<% end %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Fecha</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @events.each do |event|%>
+        <tr>
+        <th scope="row"><%= link_to 'X', event_path(event), data:{confirm: 'SegurE?'}, :method => :delete %> </th>
+        <td><%= event.name %></td>
+        <td><%= event.date %></td>
+        <td><%= link_to 'Ver', event_path(event) %></td>
+        <td><%= link_to 'Editar', edit_event_path(event) %></td>
+        </tr>
+    <% end %>
+  </tbody>  
+</table>  
 
 
 

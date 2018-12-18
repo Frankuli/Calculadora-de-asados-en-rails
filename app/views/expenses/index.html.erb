@@ -13,8 +13,8 @@
                         <% @expenses.each do |expense|%>
                             <div class="table-row" >
                                 <div class="visit" ><%= expense.price %> </div>
-                                <div class="visit" ><%= expense.article %> </div>
-                                <div class="visit" ><%= expense.person %> </div>
+                                <div class="visit" ><%= expense.article.name %> </div>
+                                <div class="visit" ><%= expense.person.name %> </div>
                                 <div class="visit"> <%= link_to 'Editar', edit_article_path(expense) %></div>
                                 <div class="visit"> <%= link_to 'Destroy', article_path(expense), method: :delete, data: { confirm: 'Are you sure?' } %></div>
                             </div>

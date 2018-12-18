@@ -1,12 +1,28 @@
-<h1>Nuevo Gasto</h1>
-<%= form_with scope: :expense, url: expenses_path, local: true do |form| %>
-  <p>
-    <%= form.label :Precio %><br>
-    <%= form.text_field :price %>
-  </p>
+<h1>Gasto</h1>
 
-  <p>
-    <%= form.submit 'Guardar' %>
-  </p>
+<% @event.expenses.each do |expense|%>
+
+  <p><%= expense.price %></p>
+  <p><%= expense.person.name %></p>
+  <p><%= expense.article.name %></p>
 
 <% end %>
+
+<p>total</p>
+
+<p>
+  Gasto total:
+  <%= @event.expenseSum %><br>
+  Personas:
+  <%= @event.people.count %> <br>
+  TaP:
+  <%= @event.promedio %><br>
+  <% @event.people.each do |person|%>
+    <%= person.id %> 
+    <%= person.total_expense - @event.promedio %> 
+    -------------
+    <br>
+  <% end %>
+</p>
+<%= link_to 'Volver', events_path, {:class=>"genric-btn primary circle arrow" } %>
+

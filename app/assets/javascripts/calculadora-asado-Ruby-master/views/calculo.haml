@@ -1,0 +1,40 @@
+%section.banner-area.relative
+	.container
+		.row.section-top-border.justify-content-md-center
+			.col.col-lg-12.text-center
+				%h3.mb-30 Calcular Gastos
+		.row.justify-content-md-center
+			.col.col-lg-4.text-center
+				%h3 Eventos
+				-@los_eventos.each do |evento|
+					%input{:type => "radio", :name => "nombre"}
+						=evento.nombre
+					%input{:type => "hidden", :value => "#{evento.id}"}
+					%br
+				%br
+				%a{:href =>'/eventos'}
+					%span.glyphicon.glyphicon-plus 
+					Nuevo Evento
+			.col.col-lg-4.text-center
+				%h3 Personas
+				-@las_personas.each do |persona|
+					%input{:type => "checkbox", :name => "nombre"}
+						=persona.nombre
+					%input{:type => "hidden", :value => "#{persona.id}"}
+					%br
+				%br
+				%a{:href =>'/personas'}
+					%span.glyphicon.glyphicon-plus 
+					Nuevo Persona
+			.col.col-lg-4.text-center
+				%h3 Productos
+				-@los_productos.each do |producto|
+					%input{:type => "checkbox", :name => "nombre"}
+						=producto.nombre
+					%input{:type => "number", :name => "monto"}
+					%input{:type => "hidden", :value => "#{producto.id}"}
+					%br
+				%br
+				%a{:href =>'/productos'}
+					%span.glyphicon.glyphicon-plus 
+					Nuevo Producto

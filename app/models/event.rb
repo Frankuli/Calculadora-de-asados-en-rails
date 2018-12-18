@@ -14,7 +14,7 @@ class Event < ApplicationRecord
 
     def promedio
         return 0 unless people.count.positive?
-        expenseSum / people.count
+        ((expenseSum / people.count)*100).floor/100
     end
 
 end

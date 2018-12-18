@@ -1,0 +1,39 @@
+<h1>Gasto</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Quien</th>
+      <th scope="col">Que</th>
+      <th scope="col">Cuanto</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @event.expenses.each do |expense|%>
+        <tr>
+            <td><%= expense.person.name %></td>
+            <td><%= expense.article.name %></td>
+            <td><%= expense.price %></td>
+        </tr>
+    <% end %>
+  </tbody>  
+</table>
+
+<h2>Total</h2>
+
+
+<h4><strong>Gasto total: </strong>$ <%= @event.expenseSum %></h4>
+<h4><strong>Cantidad de Personas: </strong><%= @event.people.count %></h4>
+<h4><strong>Total a pagar por Persona: </strong>$ <%= @event.promedio %></h4>
+<% @event.people.each do |person|%>
+    <h4 class="ml-2"><strong><%= person.name %></strong> 
+    <% if (person.total_expense - @event.promedio)<0 %>
+        Hay que darle $ <%= (person.total_expense - @event.promedio)*-1%>
+    <% else %>
+        Tiene que poner $ <%= person.total_expense - @event.promedio %>
+    <% end %></h4>
+<% end %>  
+
+
+<%= link_to 'Volver', events_path, {:class=>"genric-btn primary circle arrow" } %>
+

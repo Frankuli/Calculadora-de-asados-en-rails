@@ -4,6 +4,10 @@ class ExpensesController < ApplicationController
         @expenses = Expense.all
     end
 
+    def show
+        @event = Event.find(params[:id])
+    end
+
     def new 
         @expense = Expense.new
     end
