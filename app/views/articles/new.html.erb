@@ -1,0 +1,14 @@
+<h1>Nuevo Articulo</h1>
+<%= form_with scope: :article, url: articles_path, local: true do |form| %>
+  <p>
+    <%= form.label :Name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.submit 'Guardar' %>
+  </p>
+
+<% end %>
+
+<%= link_to 'Volver', events_path %>

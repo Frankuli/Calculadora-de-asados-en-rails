@@ -1,0 +1,29 @@
+<section class="banner-area relative">
+    <div class="container">
+        <div class="row fullscreen align-items-center justify-content-center">
+            <div class="section-top-border">
+                <%= link_to 'Nuevo Gasto', new_expense_path %>
+                <h3 class="mb-30">Listado de Articulos</h3>
+                <div class="progress-table-wrap">
+                    <div class="progress-table">
+                        <div class="table-head">
+                            <div class="visit">Nombre</div>
+                            <div class="visit">/</div>
+                        </div>
+                        <% @expenses.each do |expense|%>
+                            <div class="table-row" >
+                                <div class="visit" ><%= expense.price %> </div>
+                                <div class="visit" ><%= expense.article %> </div>
+                                <div class="visit" ><%= expense.person %> </div>
+                                <div class="visit"> <%= link_to 'Editar', edit_article_path(expense) %></div>
+                                <div class="visit"> <%= link_to 'Destroy', article_path(expense), method: :delete, data: { confirm: 'Are you sure?' } %></div>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

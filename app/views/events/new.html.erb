@@ -1,0 +1,28 @@
+<h1>Nuevo Evento</h1>
+<%= form_with scope: :event, url: events_path, local: true do |form| %>
+  <% if @event.errors.any? %>
+    <div id="error_explsnstion">
+      <h2><%= pluralize(@event.errors.count, "error")%> al guardar el event</h2>
+      <ul>
+        <%= @event.errors.full_messages.each do |msg|%>
+          <li> <%= msg %> </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <p>
+    <%= form.label :Name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :Date %><br>
+    <%= form.date_select :date %>
+  </p>
+
+  <p>
+    <%= form.submit 'Guardar' %>
+  </p>
+<% end %>
+<%= link_to 'Volver', events_path %>

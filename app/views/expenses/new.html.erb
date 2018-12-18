@@ -1,0 +1,12 @@
+<h1>Nuevo Gasto</h1>
+<%= form_with scope: :expense, url: expenses_path, local: true do |form| %>
+  <p>
+    <%= form.label :Precio %><br>
+    <%= form.text_field :price %>
+  </p>
+
+  <p>
+    <%= form.submit 'Guardar' %>
+  </p>
+
+<% end %>

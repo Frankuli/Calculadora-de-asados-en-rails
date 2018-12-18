@@ -1,0 +1,73 @@
+<h1>Evento</h1>
+<p>
+    <h4><strong><%= @event.name%></strong> el <%= @event.date%></h4>
+</p>
+
+<h3>Quienes van</h3>
+
+<% @event.people.each do |person| %>
+    <p>
+        <strong><%= person.name %></strong>
+        <%= form_for([@expense, person.expenses.build]) do |form| %>        
+
+            <%= form.hidden_field :person_id, value: person.id %>
+
+            <p>
+              <%= form.label :Producto %><br>
+              <%= form.select :article_id,  @articles.collect {|p| [ p.name, p.id ] } %>
+            </p>
+            <p>
+              <%= form.label :precio %><br>
+              <%= form.number_field :price %>
+            </p>
+            <p>
+              <%= form.submit 'Guardar' %>
+            </p>  
+        <% end %>
+    </p>
+<% end %>
+
+<h2>Alguien mas?</h2>
+
+<%= form_for([@event, @event.people.build]) do |form| %>
+
+  <p>
+    <%= form.label :Nombre %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.submit 'Guardar' %>
+  </p>
+
+<% end %>
+
+<h2>Gastos</h2>
+
+<% @event.expenses.each do |expense|%>
+
+  <p><%= expense.price %></p>
+  <p><%= expense.person.name %></p>
+  <p><%= expense.article.name %></p>
+
+<% end %>
+
+<p>total</p>
+
+<p>
+  Gasto total:
+  <%= @event.expenseSum %><br>
+  Personas:
+  <%= @event.people.count %> <br>
+  TaP:
+  <%= @event.promedio %><br>
+  <% @event.people.each do |person|%>
+    <%= person.id %> 
+    <%= person.total_expense - @event.promedio %> 
+    -------------
+    <br>
+  <% end %>
+</p>
+<%= link_to 'Editar', edit_event_path(@event) %>
+
+<%= link_to 'Volver', events_path %>
